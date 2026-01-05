@@ -1,0 +1,239 @@
+# 手势识别配置
+hand_tracking:
+  model_complexity: 1
+  min_detection_confidence: 0.7
+  min_tracking_confidence: 0.7
+  max_num_hands: 2
+
+# 吉他配置
+guitar:
+  strings: 6
+  frets: 20
+  tuning: ["E2", "A", "D", "G", "B", "E4"]
+  string_colors: [[255, 0, 0], [255, 165, 0], [255, 255, 0], [0, 255, 0], [0, 0, 255], [128, 0, 128]]
+
+# 音频配置
+audio:
+  sample_rate: 44100
+  channels: 2
+  buffer_size: 1024
+  volume: 0.7
+
+# 3D渲染配置
+rendering:
+  window_width: 1280
+  window_height: 720
+  background_color: [0.1, 0.1, 0.1, 1.0]
+  particle_count: 1000
+
+# 和弦定义
+chords:
+  C_major:
+    fingers: [0, 1, 0, 2, 3, 0]
+    strings: [0, 1, 2, 3, 4, 5]
+  G_major:
+    fingers: [3, 2, 0, 0, 0, 3]
+    strings: [0, 1, 2, 3, 4, 5]
+  D_major:
+    fingers: [2, 3, 2, 0, 0, 0]
+    strings: [0, 1, 2, 3, 4, 5]
+  A_minor:
+    fingers: [0, 1, 2, 2, 0, 0]
+    strings: [0, 1, 2, 3, 4, 5]
+  E_minor:
+    fingers: [0, 2, 2, 0, 0, 0]
+    strings: [0, 1, 2, 3, 4, 5]
+  F_major:
+    fingers: [1, 1, 2, 3, 3, 1]
+    strings: [0, 1, 2, 3, 4, 5]
+
+# 3D吉他引擎配置
+guitar_3d:
+  screen_width: 1024
+  screen_height: 768
+  fov: 500
+  camera_z: 1000
+  point_cloud_size: 500
+  enable_3d_view: true  # 是否启用3D视图
+  
+  # 颜色配置
+  colors:
+    background: [10, 10, 20]
+    grid: [40, 40, 60]
+    axes_x: [255, 50, 50]
+    axes_y: [50, 255, 50]
+    axes_z: [50, 50, 255]
+    hand_points: [50, 255, 150]
+    connections: [100, 200, 255]
+    point_cloud_1: [255, 200, 50]
+    point_cloud_2: [50, 200, 255]
+    point_cloud_3: [200, 50, 255]
+  
+  # 网格设置
+  grid:
+    size: 200
+    step: 50
+    color: [40, 40, 60]
+  
+  # 坐标轴设置
+  axes:
+    length: 100
+    thickness: 3
+    x_color: [255, 50, 50]
+    y_color: [50, 255, 50]
+    z_color: [50, 50, 255]
+  
+  # 点云设置
+  point_cloud:
+    min_size: 2
+    max_size: 5
+    base_opacity: 200
+    animation_speed: 0.005
+  
+  # 手部点云设置
+  hand_point_cloud:
+    point_size: 4
+    connection_width: 2
+    label_size: 20
+    label_color: [255, 255, 255]
+
+# 手势识别高级配置
+gesture_recognition:
+  # 位置阈值
+  position_thresholds:
+    high_position: 0.3    # 画面上部30%
+    low_position: 0.7     # 画面下部30%
+    middle_min: 0.35      # 中部开始
+    middle_max: 0.65      # 中部结束
+  
+  # 手指伸直判断
+  finger_recognition:
+    angle_threshold: 30   # 角度阈值（度）
+    extended_threshold: 0.8  # 伸直判断阈值
+    min_finger_length: 0.05  # 最小手指长度比例
+    
+  # 稳定性判断
+  stability:
+    min_frames: 5         # 最小稳定帧数
+    position_variance: 0.1 # 位置方差阈值
+    finger_variance: 0.15  # 手指状态方差阈值
+  
+  # 扫弦检测
+  strumming:
+    speed_threshold: 20    # 像素/帧的速度阈值
+    min_movement: 30       # 最小移动像素
+    direction_threshold: 0.7 # 方向一致性阈值
+    time_window: 0.5       # 时间窗口（秒）
+
+# 和弦声音配置
+chord_sounds:
+  # 音量设置
+  volume_levels:
+    chord: 0.7
+    strum: 0.5
+    pick_noise: 0.3
+    single_note: 0.6
+  
+  # 音符持续时间（秒）
+  durations:
+    chord: 2.0
+    strum: 1.5
+    pick_noise: 0.5
+    single_note: 1.0
+  
+  # 和弦音符映射
+  chord_notes:
+    C_major: ["C4", "E4", "G4"]
+    G_major: ["G4", "B4", "D5"]
+    D_major: ["D4", "F#4", "A4"]
+    A_minor: ["A4", "C5", "E5"]
+    E_minor: ["E4", "G4", "B4"]
+    F_major: ["F4", "A4", "C5"]
+  
+  # 音效文件路径（相对路径）
+  sound_paths:
+    chords: "guitar_samples/chords/"
+    picks: "guitar_samples/effects/"
+    notes: "guitar_samples/notes/"
+
+# 用户界面配置
+ui:
+  # 主题颜色
+  theme:
+    primary_color: "#FF6B6B"
+    secondary_color: "#4ECDC4"
+    accent_color: "#45B7D1"
+    background_color: "#1E1E2E"
+    text_color: "#CDD6F4"
+    
+  # 布局设置
+  layout:
+    sidebar_width: 250
+    main_content_width: 800
+    padding: 20
+    
+  # 动画设置
+  animations:
+    chord_display_duration: 1.0
+    fade_in_speed: 0.3
+    fade_out_speed: 0.3
+    
+  # 和弦显示颜色
+  chord_display_colors:
+    C_major: '#FF6B6B'
+    G_major: '#4ECDC4'
+    D_major: '#45B7D1'
+    A_minor: '#96CEB4'
+    E_minor: '#FFEAA7'
+    F_major: '#DDA0DD'
+
+# 性能优化配置
+performance:
+  # 帧率控制
+  frame_rate:
+    target_fps: 30
+    max_fps: 60
+    min_fps: 15
+    
+  # 缓存设置
+  caching:
+    frame_cache_size: 10
+    hand_data_cache_size: 20
+    audio_cache_size: 5
+    
+  # 资源管理
+  resources:
+    max_memory_usage: 512  # MB
+    gpu_acceleration: true
+    parallel_processing: true
+    
+  # 降级策略
+  fallback:
+    enable_fallback: true
+    fallback_resolution: [640, 480]
+    fallback_fps: 15
+
+# 调试配置
+debug:
+  # 日志级别
+  log_level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  
+  # 输出设置
+  output:
+    console_logging: true
+    file_logging: false
+    log_file: "air_guitar.log"
+    
+  # 调试选项
+  options:
+    show_fps: true
+    show_landmarks: true
+    show_bounding_box: true
+    show_hand_type: true
+    show_gesture_info: true
+    
+  # 性能监控
+  performance_monitoring:
+    enable: true
+    update_interval: 1.0  # 秒
+    metrics: ["fps", "memory", "cpu", "detection_time"]
